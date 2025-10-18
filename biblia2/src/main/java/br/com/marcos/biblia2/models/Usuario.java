@@ -27,7 +27,7 @@ public class Usuario {
         if(email.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")) {
             this.email = email;
         }else{
-            throw new EmailInvalidoException("E-mail inválido");
+            throw new EmailInvalidoException("E-mail inválido!");
         }
         if(senha.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()]).{8,}$")) {
             this.senha = senha;
@@ -97,14 +97,14 @@ public class Usuario {
     public  static Usuario gerarUsuario(Scanner sc){
         System.out.println("Digite seu nome:");
         var nome = sc.nextLine();
-        System.out.println("Digite seu email:");
+        System.out.println("Digite um e-mail válido:");
         var email = sc.nextLine();
-        System.out.println("Digite sua senha:");
+        System.out.println("Digite sua senha com pelo menos,8 caracteres, 1 maiúsculo, 1 minúsculo, 1 número e um caracter especial:");
         var senha = sc.nextLine();
         try {
             return new Usuario(nome,email,senha);
         }catch(NomeInvalidoException|EmailInvalidoException|SenhaInvalidaException ex){
-            System.out.println(ex.getMessage());
+            System.out.println(ex.getMessage()+"Tente novamente.");
             return null;
             }
     }
