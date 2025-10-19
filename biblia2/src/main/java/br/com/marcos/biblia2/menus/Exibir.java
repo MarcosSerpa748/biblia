@@ -20,7 +20,7 @@ public class Exibir {
                 Digite 1 para ler um capítulo
                 Digite 2 para ler um versículo específico
                 Digite 3 pare ler seus versículos lidos
-                Digite 4 para finalizar o programa
+                Digite 0 para finalizar o programa
                 """);
     }
 
@@ -88,7 +88,7 @@ public class Exibir {
                 default:
                     break;
             }
-        }while (!(escolha.equalsIgnoreCase("4")));
+        }while (!(escolha.equalsIgnoreCase("0")));
         System.out.println("Finalizando....");
     }
 }
