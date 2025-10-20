@@ -70,7 +70,7 @@ public class Exibir {
                     String resposta1;
                     do{
                         u.lerCapitulo(sc);
-                        System.out.println("Deseja pesquisar novamente? (S/N)");
+                        System.out.println("Deseja tentar novamente? (S/N)");
                         resposta1 = sc.nextLine();
                     }while(resposta1.equalsIgnoreCase("s"));
                     break;
@@ -78,7 +78,7 @@ public class Exibir {
                     String resposta2;
                     do {
                         u.pesquisarVersiculo(sc);
-                        System.out.println("Deseja pesquisar novamente?(S/N)");
+                        System.out.println("Deseja tentar novamente?(S/N)");
                         resposta2 = sc.nextLine();
                     }while (resposta2.equalsIgnoreCase("S"));
                     break;

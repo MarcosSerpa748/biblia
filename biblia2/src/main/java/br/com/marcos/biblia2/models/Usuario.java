@@ -7,10 +7,8 @@ import br.com.marcos.biblia2.menus.Exibir;
 import br.com.marcos.biblia2.services.HTTP;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Usuario {
     private String nome;
@@ -19,7 +17,7 @@ public class Usuario {
     private List<VersiculoExpecifico> lista;
 
     public Usuario(String nome,String email,String senha){
-        if (nome.matches("^[a-zA-ZÀ-ú\\s]+$")){
+        if (nome.matches("^[a-zA-ZÀ-ú\\s]+$")&& nome.length() >= 5){
             this.nome = nome;
         }else{
             throw new NomeInvalidoException("Nome inválido!");
@@ -113,7 +111,7 @@ public class Usuario {
         if (lista.isEmpty()){
             System.out.println("Lista vazia");
         }
-        return this.lista;
+        return this.lista.stream().sorted(Comparator.comparing(VersiculoExpecifico::capitulo)).collect(Collectors.toList());
     }
 
     public void setLista(List<VersiculoExpecifico> lista) {

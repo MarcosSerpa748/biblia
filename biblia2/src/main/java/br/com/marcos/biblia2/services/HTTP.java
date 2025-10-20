@@ -4,6 +4,7 @@ import br.com.marcos.biblia2.models.*;
 
 import java.io.IOException;
 import java.net.URI;
+import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -24,22 +25,30 @@ public class HTTP {
         return response.body();
     }
     public static ListaVersiculoEspecifico desserializarVersiculo(String livroCapituloVersiculo,String lingua) throws IOException, InterruptedException {
-        var json = requisicao(URL1 +livroCapituloVersiculo+ URLLINGUA +lingua);
+        var livroCapituloVersiculoReforcado = URLEncoder.encode(livroCapituloVersiculo);
+        var linguaReforcado = URLEncoder.encode(lingua);
+        var json = requisicao(URL1 +livroCapituloVersiculoReforcado+ URLLINGUA +linguaReforcado);
 
         return Desserializador.desserializar(json, ListaVersiculoEspecifico.class);
     }
     public static ListaLivro exibirLivros(String lingua)throws IOException, InterruptedException {
-        var json = requisicao(URL2 +lingua);
+        var linguaReforcada = URLEncoder.encode(lingua);
+        var json = requisicao(URL2 +linguaReforcada);
 
         return Desserializador.desserializar(json, ListaLivro.class);
     }
     public static ListaCapitulo desserializaListaCapitulos(String lingua,String livro) throws IOException, InterruptedException {
-        var json = requisicao(URL2+lingua+"/"+livro);
+        var linguaReforcada = URLEncoder.encode(lingua);
+        var livroReforcado = URLEncoder.encode(livro);
+        var json = requisicao(URL2+linguaReforcada+"/"+livroReforcado);
 
         return Desserializador.desserializar(json,ListaCapitulo.class);
     }
     public static ListaVersiculo desserializarListaVersiculos(String lingua,String id,String capitulo) throws IOException, InterruptedException {
-        var json = requisicao(URL2+lingua+"/"+id+"/"+capitulo);
+        var linguaReforcada = URLEncoder.encode(lingua);
+        var idReforcado = URLEncoder.encode(id);
+        var capituloReforcado = URLEncoder.encode(capitulo);
+        var json = requisicao(URL2+linguaReforcada+"/"+idReforcado+"/"+capituloReforcado);
 
         return Desserializador.desserializar(json,ListaVersiculo.class);
     }
