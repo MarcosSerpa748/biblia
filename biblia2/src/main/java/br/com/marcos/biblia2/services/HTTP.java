@@ -40,8 +40,8 @@ public class HTTP implements Desserializador {
     }
     public static ListaCapitulo desserializaListaCapitulos(String lingua,String livro) throws IOException, InterruptedException {
         var linguaReforcada = URLEncoder.encode(lingua);
-        var livroReforcado = URLEncoder.encode(livro);
-        var json = requisicao(URL2+linguaReforcada+"/"+livroReforcado);
+        var idReforcado = URLEncoder.encode(livro);
+        var json = requisicao(URL2+linguaReforcada+"/"+idReforcado);
 
         return Desserializador.desserializar(json,ListaCapitulo.class);
     }
