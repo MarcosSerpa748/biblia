@@ -14,7 +14,7 @@ public class Usuario {
     private String nome;
     private String email;
     private String senha;
-    private List<VersiculoExpecifico> lista;
+    private List<VersiculoExpecifico> lista = new ArrayList<>();
 
     public Usuario(String nome,String email,String senha){
         if (nome.matches("^[a-zA-ZÀ-ú\\s]+$")&& nome.length() >= 5){
@@ -32,7 +32,7 @@ public class Usuario {
         }else{
             throw new SenhaInvalidaException("Senha inválida!");
         }
-        this.lista = new ArrayList<>();
+
     }
     public void pesquisarVersiculo(Scanner sc) throws IOException, InterruptedException {
         List<ListaVersiculoEspecifico> lista = new ArrayList<>();
@@ -111,7 +111,7 @@ public class Usuario {
         if (lista.isEmpty()){
             System.out.println("Lista vazia");
         }
-        return this.lista.stream().sorted(Comparator.comparing(VersiculoExpecifico::capitulo)).collect(Collectors.toList());
+        return this.lista.stream().sorted(Comparator.comparing(VersiculoExpecifico::livro)).collect(Collectors.toList());
     }
 
     public void setLista(List<VersiculoExpecifico> lista) {
@@ -144,11 +144,9 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" +
-                "nome='" + nome + '\'' +
-                ", email='" + email + '\'' +
-                ", senha='" + senha + '\'' +
-                ", lista=" + lista +
-                '}';
+        return  "Nome:"+getNome()+"\n"+
+                "E-mail:"+getEmail()+"\n"+
+                "Senha:"+getSenha()+"\n"+
+                "Lista:"+getLista();
     }
 }

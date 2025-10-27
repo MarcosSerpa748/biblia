@@ -9,13 +9,13 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class HTTP {
+public class HTTP implements Desserializador {
     private static final String URL1 = "https://bible-api.com/";
     private static final String URLLINGUA = "?translation=";
     private static final String URL2 = "https://bible-api.com/data/";
 
 
-    public static String requisicao(String url) throws IOException, InterruptedException {
+    private static String requisicao(String url) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request =  HttpRequest.newBuilder()
                 .uri(URI.create(url))
@@ -24,6 +24,7 @@ public class HTTP {
                 .send(request,HttpResponse.BodyHandlers.ofString());
         return response.body();
     }
+
     public static ListaVersiculoEspecifico desserializarVersiculo(String livroCapituloVersiculo,String lingua) throws IOException, InterruptedException {
         var livroCapituloVersiculoReforcado = URLEncoder.encode(livroCapituloVersiculo);
         var linguaReforcado = URLEncoder.encode(lingua);
@@ -52,4 +53,6 @@ public class HTTP {
 
         return Desserializador.desserializar(json,ListaVersiculo.class);
     }
+
+
 }
