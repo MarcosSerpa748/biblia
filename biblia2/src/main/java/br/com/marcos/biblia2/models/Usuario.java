@@ -1,5 +1,6 @@
 package br.com.marcos.biblia2.models;
 
+import br.com.marcos.biblia2.Interfaces.Gerador;
 import br.com.marcos.biblia2.execoes.EmailInvalidoException;
 import br.com.marcos.biblia2.execoes.NomeInvalidoException;
 import br.com.marcos.biblia2.execoes.SenhaInvalidaException;
@@ -10,7 +11,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Usuario {
+public class Usuario implements Gerador<Usuario> {
     private String nome;
     private String email;
     private String senha;
@@ -32,7 +33,8 @@ public class Usuario {
         }else{
             throw new SenhaInvalidaException("Senha inválida!");
         }
-
+    }
+    public Usuario(){
     }
     public void pesquisarVersiculo(Scanner sc) throws IOException, InterruptedException {
         List<ListaVersiculoEspecifico> lista = new ArrayList<>();
@@ -92,7 +94,8 @@ public class Usuario {
         }
 
     }
-    public  static Usuario gerarUsuario(Scanner sc){
+    @Override
+    public Usuario gerarObjeto(Scanner sc) {
         System.out.println("Digite seu nome:");
         var nome = sc.nextLine();
         System.out.println("Digite um e-mail válido:");
@@ -104,7 +107,7 @@ public class Usuario {
         }catch(NomeInvalidoException|EmailInvalidoException|SenhaInvalidaException ex){
             System.out.println(ex.getMessage()+"Tente novamente.");
             return null;
-            }
+        }
     }
 
     public List<VersiculoExpecifico> getLista() {
@@ -149,4 +152,5 @@ public class Usuario {
                 "Senha:"+getSenha()+"\n"+
                 "Lista:"+getLista();
     }
+
 }

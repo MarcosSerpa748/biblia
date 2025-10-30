@@ -9,7 +9,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class HTTP implements Desserializador {
+public class HTTP {
     private static final String URL1 = "https://bible-api.com/";
     private static final String URLLINGUA = "?translation=";
     private static final String URL2 = "https://bible-api.com/data/";
