@@ -15,6 +15,6 @@ public class MainTestes {
             usuario = objeto.gerarObjeto(sc);
         } while (usuario == null);
 
-        Exibir.sistema(objeto,sc);
+        Exibir.sistema(usuario,sc);
     }
 }
