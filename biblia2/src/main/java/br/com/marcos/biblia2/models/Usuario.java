@@ -1,6 +1,5 @@
 package br.com.marcos.biblia2.models;
 
-import br.com.marcos.biblia2.Interfaces.Gerador;
 import br.com.marcos.biblia2.execoes.EmailInvalidoException;
 import br.com.marcos.biblia2.execoes.NomeInvalidoException;
 import br.com.marcos.biblia2.execoes.SenhaInvalidaException;
@@ -11,14 +10,14 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class Usuario implements Gerador<Usuario> {
+public class Usuario{
     private String nome;
     private String email;
     private String senha;
     private List<VersiculoExpecifico> lista = new ArrayList<>();
 
     public Usuario(String nome,String email,String senha){
-        if (nome.matches("^[a-zA-ZÀ-ú\\s]+$")&& nome.length() >= 5){
+        if (nome.matches("^[a-zA-ZÀ-ú\\s]+$")&& nome.length() >= 4){
             this.nome = nome;
         }else{
             throw new NomeInvalidoException("Nome inválido!");
@@ -94,8 +93,7 @@ public class Usuario implements Gerador<Usuario> {
         }
 
     }
-    @Override
-    public Usuario gerarObjeto(Scanner sc) {
+    public static Usuario gerarObjeto(Scanner sc) {
         System.out.println("Digite seu nome:");
         var nome = sc.nextLine();
         System.out.println("Digite um e-mail válido:");

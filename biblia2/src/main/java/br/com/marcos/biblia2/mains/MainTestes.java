@@ -9,10 +9,9 @@ import java.util.Scanner;
 public class MainTestes {
     public static void main(String[]args) throws IOException, InterruptedException {
         Scanner sc = new Scanner(System.in);
-        Usuario objeto = new Usuario();
         Usuario usuario;
         do {
-            usuario = objeto.gerarObjeto(sc);
+            usuario = Usuario.gerarObjeto(sc);
         } while (usuario == null);
 
         Exibir.sistema(usuario,sc);
